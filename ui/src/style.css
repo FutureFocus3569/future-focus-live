@@ -1,0 +1,257 @@
+/* Reset and full-screen gradient */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #4decc1, #89f7fe, #66a6ff);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.chat-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 1rem;
+}
+
+.chat-header .logo {
+  height: 130px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.chat-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.chat-header .highlight {
+  color: #ffd54f;
+}
+
+.logout-button {
+  background: #7aaeff;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #689be6;
+}
+
+.main-content {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.occupancy-section {
+  flex: 1;
+  padding: 1rem;
+}
+
+.occupancy-title {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.occupancy-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.occupancy-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f4f9ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.occupancy-name {
+  font-weight: bold;
+  min-width: 140px;
+}
+
+.occupancy-donut {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(#7aaeff 0% 75%, #ddd 75% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.sub-donuts {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.sub-donut {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: conic-gradient(#a3d3ff 0% 50%, #ddd 50% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+  flex-direction: column;
+  line-height: 1.1;
+  color: #333;
+  padding: 0.2rem;
+}
+
+.chat-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-box {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+}
+
+.chat-history {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding-right: 0.5rem;
+}
+
+.chat-bubble {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #f1f8ff;
+  line-height: 1.4;
+}
+
+.chat-bubble.user {
+  background: #cce0ff;
+  align-self: flex-end;
+}
+
+.chat-bubble.agent {
+  background: #e8f4fc;
+  align-self: flex-start;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input-area input {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.send-btn {
+  background: #7aaeff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background: #689be6;
+}
+
+.utility-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.utility-buttons button {
+  background: #dceeff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.utility-buttons button:hover {
+  background: #c4e1ff;
+}
+
+.logged-out .chat-app {
+  justify-content: center;
+}
+
+.chat-app input[type="text"],
+.chat-app input[type="password"] {
+  padding: 0.75rem;
+  width: 300px;
+  margin: 0.5rem 0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.chat-app button {
+  background: #7aaeff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.chat-app button:hover {
+  background: #5f9aed;
+}
