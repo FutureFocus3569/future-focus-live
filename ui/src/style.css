@@ -74,7 +74,7 @@ body, html {
 }
 
 .tabs button.active {
-  background: #5962c9; /* Active tab is green */
+  background: #6f77d7; /* Active tab is green */
 }
 
 /* Ensure layout underneath still sits cleanly */

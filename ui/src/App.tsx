@@ -66,7 +66,7 @@ export default function App() {
     <div className="chat-app">
       <div className="chat-header">
         <img src="logo.png" alt="Future Focus Logo" className="logo" style={{ width: '160px', height: 'auto' }} />
-        <h1>Knowledge<span className="highlight">AI</span></h1>
+        <h1>Knowledge<span className="highlight">Base</span></h1>
         <button className="logout-button" onClick={handleLogout}>Logout</button>
       </div>
 
@@ -76,7 +76,7 @@ export default function App() {
         <button onClick={() => setCurrentTab('ai')} className={currentTab === 'ai' ? 'active' : ''}>✨ Future Focus AI</button>
         <button onClick={() => setCurrentTab('coming')} className={currentTab === 'coming' ? 'active' : ''}>✨ Coming Soon</button>
         <button onClick={() => setCurrentTab('learning')} className={currentTab === 'learning' ? 'active' : ''}>✨ Learning Hub</button>
-        <button onClick={() => setCurrentTab('resources')} className={currentTab === 'resources' ? 'active' : ''}>✨ Resources</button>
+        <button onClick={() => setCurrentTab('resources')} className={currentTab === 'resources' ? 'active' : ''}>✨ Marketing</button>
       </div>
 
       {/* 👇 Dashboard Tab */}
