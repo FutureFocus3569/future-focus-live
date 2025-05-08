@@ -1,5 +1,4 @@
-// App.tsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './style.css';
 
 const currentMonthYear = new Date().toLocaleString('default', {
@@ -9,14 +8,26 @@ const currentMonthYear = new Date().toLocaleString('default', {
 
 const CENTRES = ["Papamoa Beach", "Livingstone Drive", "The Bach", "Terrace Views", "The Boulevard", "West Dune"];
 
+type OccupancyEntry = {
+  total: number;
+  u2: number;
+  o2: number;
+};
+
+type OccupancyData = {
+  [centre: string]: OccupancyEntry;
+};
+
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentTab, setCurrentTab] = useState('dashboard');
-  const [messages, setMessages] = useState([{ sender: 'agent', text: 'Kia ora! How can I help you today?' }]);
+  const [messages, setMessages] = useState<{ sender: 'user' | 'agent'; text: string }[]>([
+    { sender: 'agent', text: 'Kia ora! How can I help you today?' }
+  ]);
   const [input, setInput] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [occupancyData, setOccupancyData] = useState({});
+  const [occupancyData, setOccupancyData] = useState<OccupancyData>({});
 
   useEffect(() => {
     if (loggedIn && currentTab === 'dashboard') {
@@ -29,8 +40,7 @@ export default function App() {
 
   const handleSend = () => {
     if (input.trim() === '') return;
-    const newMessages = [...messages, { sender: 'user', text: input }];
-    setMessages(newMessages);
+    setMessages([...messages, { sender: 'user', text: input }]);
     setInput('');
     setTimeout(() => {
       setMessages(prev => [...prev, { sender: 'agent', text: 'Thanks for your message!' }]);
@@ -66,11 +76,10 @@ export default function App() {
     <div className="chat-app">
       <div className="chat-header">
         <img src="logo.png" alt="Future Focus Logo" className="logo" style={{ width: '160px', height: 'auto' }} />
-        <h1>Knowledge<span className="highlight">Base</span></h1>
+        <h1>Future Focus<span className="highlight">Live</span></h1>
         <button className="logout-button" onClick={handleLogout}>Logout</button>
       </div>
 
-      {/* 👇 Tabs */}
       <div className="tabs">
         <button onClick={() => setCurrentTab('dashboard')} className={currentTab === 'dashboard' ? 'active' : ''}>✨ Dashboard</button>
         <button onClick={() => setCurrentTab('ai')} className={currentTab === 'ai' ? 'active' : ''}>✨ Future Focus AI</button>
@@ -79,7 +88,6 @@ export default function App() {
         <button onClick={() => setCurrentTab('resources')} className={currentTab === 'resources' ? 'active' : ''}>✨ Marketing</button>
       </div>
 
-      {/* 👇 Dashboard Tab */}
       {currentTab === 'dashboard' && (
         <div className="main-content">
           <div className="occupancy-section">
@@ -88,15 +96,21 @@ export default function App() {
               {CENTRES.map(centre => (
                 <div className="occupancy-item" key={centre}>
                   <div className="occupancy-name">{centre}</div>
-                  <div className="occupancy-donut" style={{ background: `conic-gradient(#7aaeff 0% ${occupancyData[centre]?.total || 0}%, #ddd ${occupancyData[centre]?.total || 0}% 100%)` }}>
+                  <div className="occupancy-donut" style={{
+                    background: `conic-gradient(#7aaeff 0% ${occupancyData[centre]?.total || 0}%, #ddd ${occupancyData[centre]?.total || 0}% 100%)`
+                  }}>
                     {occupancyData[centre]?.total || 0}%
                   </div>
                   <div className="sub-donuts">
-                    <div className="sub-donut" style={{ background: `conic-gradient(#a3d3ff 0% ${occupancyData[centre]?.u2 || 0}%, #ddd ${occupancyData[centre]?.u2 || 0}% 100%)` }}>
+                    <div className="sub-donut" style={{
+                      background: `conic-gradient(#a3d3ff 0% ${occupancyData[centre]?.u2 || 0}%, #ddd ${occupancyData[centre]?.u2 || 0}% 100%)`
+                    }}>
                       <div className="sub-label">U2</div>
                       <div className="sub-percent">{occupancyData[centre]?.u2 || 0}%</div>
                     </div>
-                    <div className="sub-donut" style={{ background: `conic-gradient(#a3d3ff 0% ${occupancyData[centre]?.o2 || 0}%, #ddd ${occupancyData[centre]?.o2 || 0}% 100%)` }}>
+                    <div className="sub-donut" style={{
+                      background: `conic-gradient(#a3d3ff 0% ${occupancyData[centre]?.o2 || 0}%, #ddd ${occupancyData[centre]?.o2 || 0}% 100%)`
+                    }}>
                       <div className="sub-label">O2</div>
                       <div className="sub-percent">{occupancyData[centre]?.o2 || 0}%</div>
                     </div>
@@ -126,7 +140,6 @@ export default function App() {
         </div>
       )}
 
-      {/* 👇 AI Tab */}
       {currentTab === 'ai' && (
         <div className="chat-section">
           <div className="chat-box">
@@ -142,8 +155,8 @@ export default function App() {
                 type="text"
                 value={input}
                 placeholder="Ask something like 'What are the licensing rules?'"
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleSend()}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleSend()}
               />
               <button className="send-btn" onClick={handleSend}>⚡ Ask</button>
             </div>
@@ -151,7 +164,6 @@ export default function App() {
         </div>
       )}
 
-      {/* 👇 Coming Soon Tab */}
       {currentTab === 'coming' && (
         <div style={{ marginTop: '2rem', fontSize: '1.25rem', textAlign: 'center' }}>
           🚧 This feature is under construction!

@@ -5,9 +5,13 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173, // or whatever port you're using
+    port: 5173, // Optional: only used for local dev
   },
   build: {
     outDir: 'dist',
+    sourcemap: true, // Optional: helpful for debugging deployed builds
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.jsx', '.tsx'], // Ensures module resolution for TypeScript
   },
 });
